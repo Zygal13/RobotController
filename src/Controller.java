@@ -17,7 +17,7 @@ public class Controller extends Window {
         if(m.y > y + 50 && m.y < y + 225) {
             //angle
             if(Math.sqrt(Math.pow((angle.x + (w-75)*(angle.x/180f)) - m.x, 2) + Math.pow(50 - m.y, 2)) < 50) {
-                angle.x += ;
+                angle.x +=
             }
         } else if (m.y > y + 225 && m.y < y + 400) {
             //position
