@@ -5,6 +5,10 @@ import java.util.HashMap;
 
 public class Main extends PApplet {
     public static HashMap<String, Window> windows = new HashMap<String, Window>();
+    public static PVector angle = new PVector(0, 90, 180);
+    public static PVector maxAngle = new PVector(360, 90, 180);
+    public static PVector arm = new PVector(65, 150, 110);
+
     private static PVector mouse = new PVector();
 
     @Override
@@ -19,9 +23,12 @@ public class Main extends PApplet {
 
     @Override
     public void setup() {
+        ortho();
         windows.put("simulation", new Simulation(25, 25, 800, 400));
         windows.put("controller", new Controller(850, 25, width-(25+850), height-25*2));
         windows.put("console", new Console(25, 450, 800, height-475));
+
+        ((Simulation)windows.get("simulation")).loadShapes(this);
     }
 
     @Override
@@ -45,7 +52,7 @@ public class Main extends PApplet {
         super.mouseDragged();
         for (Window w : windows.values()) {
             if (w.isOn((int)mouse.x, (int)mouse.y)) {
-                w.mouseDragged(mouseX - (int)mouse.x, mouseY - (int)mouse.y);
+                w.mouseDragged(mouseX, mouseY);
             }
         }
         mouse.x = mouseX;

@@ -30,7 +30,7 @@ public class Window {
 
     }
 
-    public void mouseDragged(int dmx, int dmy) {
+    public void mouseDragged(int mx, int my) {
 
     }
 
