@@ -27,22 +27,49 @@ public class Simulation extends Window {
         super.draw(g);
         // arrows
         g.pushMatrix();
-        g.translate(this.w-100, 125, 100);
+        g.translate(this.w-100, 100, 100);
         g.rotateX(-this.angle.x);
         g.rotateY(this.angle.y);
         g.stroke(255, 0, 0);
         g.line(0, 0, 0, 50, 0, 0);
-        g.text("X", 50, 0, 0);
         g.stroke(0, 0, 255);
         g.line(0, 0, 0, 0, -50, 0);
-        g.text("Y", 0, -50, 0);
         g.stroke(0, 255, 0);
         g.line(0, 0, 0, 0, 0, 50);
-        g.text("Z", 0, 0, 50);
         g.popMatrix();
 
         drawArm(g);
-        g.directionalLight(255, 255, 255, 0, 0, 0);
+        drawGrid(g);
+        g.directionalLight(255, 255, 255, 0, 0, -1);
+
+        g.ambient(255);
+        g.translate(0, 0, 850);
+        g.noStroke();
+        g.fill(64);
+        g.rect(0, h, w, h+100);
+        g.rect(0, 0, w, -100);
+        g.strokeWeight(5);
+        g.stroke(200);
+        g.line(0, h, w, h);
+        g.line(0, 0, w, 0);
+    }
+
+    private void drawGrid(PGraphics g) {
+        g.pushMatrix();
+        g.translate(w/2f, h*0.75f, 500);
+        g.rotateX((float) (Math.PI/2f - this.angle.x));
+        g.rotateZ(-this.angle.y);
+        g.noFill();
+        g.stroke(100);
+        g.strokeWeight(1);
+        int num = 8;
+        for (int i = 1; i <= num; i++) {
+            float n = 2f/(num+1)*i-1;
+            float v = (float) (260f * Math.sin(Math.acos(n)));
+            g.line(260f*n, v, 0, 260f*n,  -v, 0);
+            g.line( v, 260f*n, 0,  -v, 260f*n, 0);
+        }
+        g.popMatrix();
     }
 
     private void drawArm(PGraphics g) {
@@ -51,6 +78,7 @@ public class Simulation extends Window {
         g.scale(1, -1, 1);
         g.rotateX(this.angle.x);
         g.rotateY(this.angle.y);
+        g.translate(0,22.5f, 0);
         g.shape(base);
         g.translate(0, Main.arm.x-25, 0);
         g.rotateY((float) Math.toRadians(Main.angle.x));
@@ -73,5 +101,6 @@ public class Simulation extends Window {
         float dmy = my - Main.getMouse().y;
         this.angle.x += dmy * 0.01;
         this.angle.y += dmx * 0.01;
+        this.angle.x = (float) Math.max(-Math.PI/2f, Math.min(Math.PI/2f, this.angle.x));
     }
 }
