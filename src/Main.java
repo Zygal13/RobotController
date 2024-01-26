@@ -31,11 +31,11 @@ public class Main extends PApplet {
 
         ((Simulation) windows.get("simulation")).loadShapes(this);
 
-        Console.println("Welcome to the robot arm controller!", Console.Type.INFO);
-        Console.println("Verion 0.3.0", Console.Type.INFO);
-        Console.println("Created by: Zygal", Console.Type.INFO);
-        Console.println("Use the sliders to control the arm.", Console.Type.INFO);
-        Console.println("No device detected.", Console.Type.WARNING);
+        Console.log("Welcome to the robot arm controller!", Console.Type.INFO);
+        Console.log("Verion 0.3.0", Console.Type.INFO);
+        Console.log("Created by: Zygal", Console.Type.INFO);
+        Console.log("Use the sliders to control the arm.", Console.Type.INFO);
+        Console.log("No device detected.", Console.Type.WARNING);
     }
 
     @Override

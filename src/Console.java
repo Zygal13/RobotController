@@ -38,7 +38,12 @@ public class Console extends Window {
         }
     }
 
-    public static void println(String s, Type t) {
+    /**
+     * prints the message to the console
+     * @param s string to print
+     * @param t type of message, INFO, WARNING, ERROR
+     */
+    public static void log(String s, Type t) {
         lines.add("[" + LocalDateTime.now().getHour() + ":" + LocalDateTime.now().getMinute() + ":" + LocalDateTime.now().getSecond() + "] " + s);
         type.add(t);
     }
