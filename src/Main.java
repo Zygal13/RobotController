@@ -1,5 +1,6 @@
 import processing.core.PApplet;
 import processing.core.PVector;
+import processing.event.MouseEvent;
 
 import java.util.HashMap;
 
@@ -25,10 +26,16 @@ public class Main extends PApplet {
     public void setup() {
         ortho();
         windows.put("simulation", new Simulation(25, 25, 800, 400));
-        windows.put("controller", new Controller(850, 25, width-(25+850), height-25*2));
-        windows.put("console", new Console(25, 450, 800, height-475));
+        windows.put("controller", new Controller(850, 25, width - (25 + 850), height - 25 * 2));
+        windows.put("console", new Console(25, 450, 800, height - 475));
 
-        ((Simulation)windows.get("simulation")).loadShapes(this);
+        ((Simulation) windows.get("simulation")).loadShapes(this);
+
+        Console.println("Welcome to the robot arm controller!", Console.Type.INFO);
+        Console.println("Verion 0.3.0", Console.Type.INFO);
+        Console.println("Created by: Zygal", Console.Type.INFO);
+        Console.println("Use the sliders to control the arm.", Console.Type.INFO);
+        Console.println("No device detected.", Console.Type.WARNING);
     }
 
     @Override
@@ -51,12 +58,20 @@ public class Main extends PApplet {
     public void mouseDragged() {
         super.mouseDragged();
         for (Window w : windows.values()) {
-            if (w.isOn((int)mouse.x, (int)mouse.y)) {
+            if (w.isOn((int) mouse.x, (int) mouse.y)) {
                 w.mouseDragged(mouseX, mouseY);
             }
         }
         mouse.x = mouseX;
         mouse.y = mouseY;
+    }
+    public void mouseWheel(MouseEvent event) {
+        float e = event.getCount();
+        for (Window w : windows.values()) {
+            if (w.isOn((int) mouse.x, (int) mouse.y)) {
+                w.mouseWheel(e);
+            }
+        }
     }
 
     public static void main(String[] args) {

@@ -111,6 +111,7 @@ public class Controller extends Window {
 
     public void pos2deg() {
         float R = (float) Math.sqrt(Math.pow(position.x, 2) + Math.pow(position.y, 2) + Math.pow(position.z - Main.arm.x, 2));
+        if (R > Main.arm.y + Main.arm.z) Console.println("Position out of range", Console.Type.ERROR);
         float a3 = (float) (Math.PI - Math.acos((Math.pow(Main.arm.y, 2) + Math.pow(Main.arm.z, 2) - Math.pow(R, 2)) / (2 * Main.arm.y * Main.arm.z)));
         float a2 = (float) (Math.asin((Main.arm.z * Math.sin(Math.PI - a3)) / R) + Math.asin(position.z / R));
         angle.y = a2;

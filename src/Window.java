@@ -38,6 +38,10 @@ public class Window {
 
     }
 
+    public void mouseWheel(float e) {
+
+    }
+
     /**
      * @param mx mouse x
      * @param my mouse y
