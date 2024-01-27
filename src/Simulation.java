@@ -3,12 +3,15 @@ import processing.core.PGraphics;
 import processing.core.PShape;
 import processing.core.PVector;
 
+import java.util.ArrayList;
+
 public class Simulation extends Window {
     PVector angle = new PVector();
     PShape base;
     PShape shoulder;
     PShape uArm;
     PShape lArm;
+    static ArrayList<PVector> trace = new ArrayList<PVector>();
 
     public Simulation(int x, int y, int w, int h) {
         super(x, y, w, h);
@@ -40,6 +43,7 @@ public class Simulation extends Window {
 
         drawArm(g);
         drawGrid(g);
+        drawTrace(g);
         g.directionalLight(255, 255, 255, 0, 0, -1);
 
         g.ambient(255);
@@ -94,6 +98,20 @@ public class Simulation extends Window {
         g.popMatrix();
     }
 
+    public void drawTrace(PGraphics g) {
+        g.pushMatrix();
+        g.translate(w/2f, h*0.75f, 500);
+        g.scale(1, -1, 1);
+        g.rotateX(this.angle.x);
+        g.rotateY(this.angle.y);
+        g.translate(0,22.5f, 0);
+        g.stroke(0, 255, 0);
+        for (int i = 1; i < trace.size(); i++) {
+            g.line(trace.get(i-1).x, trace.get(i-1).z-20, -trace.get(i-1).y, trace.get(i).x, trace.get(i).z-20, -trace.get(i).y);
+        }
+        g.popMatrix();
+    }
+
     @Override
     public void mouseDragged(int mx, int my) {
         super.mouseDragged(mx, my);
@@ -102,5 +120,9 @@ public class Simulation extends Window {
         this.angle.x += dmy * 0.01;
         this.angle.y += dmx * 0.01;
         this.angle.x = (float) Math.max(-Math.PI/2f, Math.min(Math.PI/2f, this.angle.x));
+    }
+
+    public static void addTrace(PVector v) {
+        trace.add(v.copy());
     }
 }
