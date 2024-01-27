@@ -4,6 +4,7 @@ import processing.core.PGraphics;
 import processing.core.PVector;
 
 public class Controller extends Window {
+    File file;
     private PVector angle;
     private PVector position;
     private PVector target;
@@ -28,6 +29,15 @@ public class Controller extends Window {
             lerp = (float) Math.min(1.0, lerp + (Main.MAX_SPEED / d)*speed);
             pos2deg();
             Simulation.addTrace(position);
+        }
+        if (file != null && lerp == 1.0f) {
+            target = file.getLine();
+            Console.log("Target: " + target, Console.Type.WARNING);
+            if (target == null) file = null;
+            else {
+                l_pos = position.copy();
+                lerp = 0.0f;
+            }
         }
     }
 
@@ -93,6 +103,8 @@ public class Controller extends Window {
                 } catch (NumberFormatException e) {
                     Console.log("Invalid input", Console.Type.ERROR);
                 }
+            } else if (my > y + 450 + 100 && my < y + 450 + 125 && mx > x + (w - 125) / 3f - 25 && mx < x + 2 * (w - 125) / 3f){
+                file = new File();
             }
         }
     }
@@ -191,6 +203,10 @@ public class Controller extends Window {
         g.fill(255);
         g.textAlign(g.CENTER, g.TOP);
         g.text("Lerp", 25 + ((w - 125) / 3f - 25) / 2f, 100);
+        g.fill(127);
+        g.rect(25 + (w - 125) / 3f, 100, (w - 125) / 3f - 25, 25);
+        g.fill(255);
+        g.text("File", 25 + (w - 125) / 3f + ((w - 125) / 3f - 25) / 2f, 100);
         //</editor-fold>
     }
 
@@ -203,7 +219,6 @@ public class Controller extends Window {
     }
 
     public void pos2deg() { //todo a3 works, only needs limits
-        Console.log("Position: " + position, Console.Type.INFO);
         float R = (float) Math.sqrt(Math.pow(position.x, 2) + Math.pow(position.y, 2) + Math.pow(position.z - (Main.arm.x), 2));
         if (R > Main.arm.y + Main.arm.z || R < Math.abs(Main.arm.y - Main.arm.z)) {
             Console.log("Position out of range " + R, Console.Type.ERROR);
