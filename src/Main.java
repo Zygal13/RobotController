@@ -7,6 +7,7 @@ import java.util.HashMap;
 public class Main extends PApplet {
     public static HashMap<String, Window> windows = new HashMap<String, Window>();
     public static PVector angle = new PVector(0, 90, 180);
+    public static float hAngle = 0;
     public static PVector maxAngle = new PVector(360, 90, 180);
     public static PVector arm = new PVector(65, 150, 110);
 

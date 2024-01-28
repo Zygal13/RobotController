@@ -1,7 +1,4 @@
-import processing.core.PApplet;
-import processing.core.PGraphics;
-import processing.core.PShape;
-import processing.core.PVector;
+import processing.core.*;
 
 import java.util.ArrayList;
 
@@ -73,6 +70,15 @@ public class Simulation extends Window {
             g.line(260f * n, v, 0, 260f * n, -v, 0);
             g.line(v, 260f * n, 0, -v, 260f * n, 0);
         }
+        g.directionalLight(255, 255, 255, 0, 0, -1);
+        g.fill(255);
+        g.textSize(50);
+        g.textAlign(PConstants.CENTER, PConstants.CENTER);
+        g.text("Y", 0, -260, 0);
+        g.translate(260, 0, 0);
+        g.rotateZ((float) (Math.PI / 2f));
+        g.text("X", 0, 0, 0);
+        g.directionalLight(255, 255, 255, 0, 0, 1);
         g.popMatrix();
     }
 

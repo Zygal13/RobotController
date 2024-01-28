@@ -31,7 +31,6 @@ public class Controller extends Window {
         }
         if (file != null && lerp == 1.0f) {
             target = file.getLine();
-            Console.log("Target: " + target, Console.Type.WARNING);
             if (target == null) file = null;
             else {
                 l_pos = position.copy();
@@ -214,21 +213,24 @@ public class Controller extends Window {
         float x = (float) Math.round(r * Math.cos(Math.toRadians(Main.angle.x)) * 100f) / 100f;
         float y = (float) Math.round(r * Math.sin(Math.toRadians(Main.angle.x)) * 100f) / 100f;
         float z = (float) Math.round((65 + 150 * Math.sin(Math.toRadians(Main.angle.y)) - 110 * Math.sin(Math.toRadians(Main.angle.z - Main.angle.y))) * 100f) / 100f;
-        position = new PVector(x, y, z);
+        position = new PVector(x, y, z).add(Commands.headOffset.copy());
     }
 
     public static void pos2deg() {
-        float R = (float) Math.sqrt(Math.pow(position.x, 2) + Math.pow(position.y, 2) + Math.pow(position.z - (Main.arm.x), 2));
+        PVector p = position.copy().sub(Commands.headOffset.copy());
+        float R = (float) Math.sqrt(Math.pow(p.x, 2) + Math.pow(p.y, 2) + Math.pow(p.z - (Main.arm.x), 2));
         if (R > Main.arm.y + Main.arm.z || R < Math.abs(Main.arm.y - Main.arm.z)) {
             Console.log("Position out of range " + R, Console.Type.ERROR);
             return;
         }
         float a3 = (float) Math.toDegrees(Math.PI - Math.acos((Math.pow(Main.arm.y, 2) + Math.pow(Main.arm.z, 2) - Math.pow(R, 2)) / (2 * Main.arm.y * Main.arm.z)));
-        float a2 = (float) Math.toDegrees(Math.acos((Math.pow(R, 2) + Math.pow(Main.arm.y, 2) - Math.pow(Main.arm.z, 2)) / (2 * R * Main.arm.y)) + Math.asin((position.z - Main.arm.x) / R));
-        float a1 = (float) Math.toDegrees(Math.atan2(position.y, position.x));
+        float a2 = (float) Math.toDegrees(Math.acos((Math.pow(R, 2) + Math.pow(Main.arm.y, 2) - Math.pow(Main.arm.z, 2)) / (2 * R * Main.arm.y)) + Math.asin((p.z - Main.arm.x) / R));
+        float a1 = (float) Math.toDegrees(Math.atan2(p.y, p.x));
+        float h = (float) 90f - a3 + a2;
         angle.x = a1;
         angle.y = a2;
         angle.z = a3;
+        Main.hAngle = h;
     }
 
     public static void setTarget(PVector target) {

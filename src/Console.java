@@ -84,6 +84,7 @@ public class Console extends Window {
                     log("speed <speed>: sets the speed of the arm as a percentage", Type.INFO);
                     log("p <x> <y> <z>: sets the target position of the arm", Type.INFO);
                     log("a <x> <y> <z>: sets the target angle of the arm (Sim only)", Type.INFO);
+                    log("head <x> <y> <z>: sets the offset of the head", Type.INFO);
                 }
                 case "clear" -> {
                     lines.clear();
@@ -150,6 +151,13 @@ public class Console extends Window {
                 case "showarm" -> {
                     Commands.showArm = Boolean.parseBoolean(split[1]);
                     Console.log("Show arm set to " + Commands.showArm, Type.INFO);
+                }
+                case "head" -> {
+                    float x = Float.parseFloat(split[1]);
+                    float y = Float.parseFloat(split[2]);
+                    float z = Float.parseFloat(split[3]);
+                    Commands.headOffset = new PVector(x, y, z);
+                    Console.log("Head offset set to " + Commands.headOffset, Type.INFO);
                 }
                 default -> Console.log("Unknown command \"" + split[0] + "\"", Type.ERROR);
             }
