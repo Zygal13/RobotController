@@ -30,7 +30,7 @@ public class Simulation extends Window {
         super.draw(g);
         // arrows
         g.pushMatrix();
-        g.translate(this.w-100, 100, 100);
+        g.translate(this.w - 100, 100, 100);
         g.rotateX(-this.angle.x);
         g.rotateY(this.angle.y);
         g.stroke(255, 0, 0);
@@ -41,16 +41,16 @@ public class Simulation extends Window {
         g.line(0, 0, 0, 0, 0, 50);
         g.popMatrix();
 
-        drawArm(g);
-        drawGrid(g);
-        drawTrace(g);
+        if (Commands.showArm) drawArm(g);
+        if (Commands.showGrid) drawGrid(g);
+        if (Commands.showTrace) drawTrace(g);
         g.directionalLight(255, 255, 255, 0, 0, -1);
 
         g.ambient(255);
         g.translate(0, 0, 850);
         g.noStroke();
         g.fill(64);
-        g.rect(0, h, w, h+100);
+        g.rect(0, h, w, h + 100);
         g.rect(0, 0, w, -100);
         g.strokeWeight(5);
         g.stroke(200);
@@ -60,54 +60,55 @@ public class Simulation extends Window {
 
     private void drawGrid(PGraphics g) {
         g.pushMatrix();
-        g.translate(w/2f, h*0.75f, 500);
-        g.rotateX((float) (Math.PI/2f - this.angle.x));
+        g.translate(w / 2f, h * 0.75f, 500);
+        g.rotateX((float) (Math.PI / 2f - this.angle.x));
         g.rotateZ(-this.angle.y);
         g.noFill();
         g.stroke(100);
         g.strokeWeight(1);
         int num = 8;
         for (int i = 1; i <= num; i++) {
-            float n = 2f/(num+1)*i-1;
+            float n = 2f / (num + 1) * i - 1;
             float v = (float) (260f * Math.sin(Math.acos(n)));
-            g.line(260f*n, v, 0, 260f*n,  -v, 0);
-            g.line( v, 260f*n, 0,  -v, 260f*n, 0);
+            g.line(260f * n, v, 0, 260f * n, -v, 0);
+            g.line(v, 260f * n, 0, -v, 260f * n, 0);
         }
         g.popMatrix();
     }
 
     private void drawArm(PGraphics g) {
         g.pushMatrix();
-        g.translate(w/2f, h*0.75f, 500);
+        g.translate(w / 2f, h * 0.75f, 500);
         g.scale(1, -1, 1);
         g.rotateX(this.angle.x);
         g.rotateY(this.angle.y);
-        g.translate(0,22.5f, 0);
+        g.translate(0, 22.5f, 0);
         g.shape(base);
-        g.translate(0, Main.arm.x-25, 0);
+        g.translate(0, Main.arm.x - 25, 0);
         g.rotateY((float) Math.toRadians(Main.angle.x));
         g.shape(shoulder);
-        g.translate(0, 2.5f,-11.25f);
-        g.rotateZ((float) (Math.toRadians(Main.angle.y) - Math.PI/2f));
-        g.translate(0, Main.arm.y/2f, 0);
+        g.translate(0, 2.5f, -11.25f);
+        g.rotateZ((float) (Math.toRadians(Main.angle.y) - Math.PI / 2f));
+        g.translate(0, Main.arm.y / 2f, 0);
         g.shape(uArm);
-        g.translate(0, Main.arm.y/2f, 22.5f);
-        g.rotateZ((float)( Math.PI - Math.toRadians(Main.angle.z)));
-        g.translate(0, -Main.arm.z/2f, 0);
+        g.translate(0, Main.arm.y / 2f, 22.5f);
+        g.rotateZ((float) (Math.PI - Math.toRadians(Main.angle.z)));
+        g.translate(0, -Main.arm.z / 2f, 0);
         g.shape(lArm);
         g.popMatrix();
     }
 
     public void drawTrace(PGraphics g) {
         g.pushMatrix();
-        g.translate(w/2f, h*0.75f, 500);
+        g.translate(w / 2f, h * 0.75f, 500);
         g.scale(1, -1, 1);
         g.rotateX(this.angle.x);
         g.rotateY(this.angle.y);
-        g.translate(0,22.5f, 0);
+        g.translate(0, 22.5f, 0);
         g.stroke(0, 255, 0);
-        for (int i = 1; i < trace.size(); i++) {
-            g.line(trace.get(i-1).x, trace.get(i-1).z-20, -trace.get(i-1).y, trace.get(i).x, trace.get(i).z-20, -trace.get(i).y);
+        for (int i = 0; i < trace.size(); i++) {
+            g.point(trace.get(i).x, trace.get(i).z - 20, -trace.get(i).y);
+            //g.line(trace.get(i - 1).x, trace.get(i - 1).z - 20, -trace.get(i - 1).y, trace.get(i).x, trace.get(i).z - 20, -trace.get(i).y);
         }
         g.popMatrix();
     }
@@ -119,10 +120,10 @@ public class Simulation extends Window {
         float dmy = my - Main.getMouse().y;
         this.angle.x += dmy * 0.01;
         this.angle.y += dmx * 0.01;
-        this.angle.x = (float) Math.max(-Math.PI/2f, Math.min(Math.PI/2f, this.angle.x));
+        this.angle.x = (float) Math.max(-Math.PI / 2f, Math.min(Math.PI / 2f, this.angle.x));
     }
 
     public static void addTrace(PVector v) {
-        trace.add(v.copy());
+        if (Commands.trace || Commands.forceTrace) trace.add(v.copy());
     }
 }

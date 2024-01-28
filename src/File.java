@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class File {
     ArrayList<String> lines = new ArrayList<String>();
 
-    public File(){
+    public File() {
         JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
         fileChooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
             public boolean accept(java.io.File f) {
@@ -26,7 +26,7 @@ public class File {
         }
     }
 
-    private void readFile(String path){
+    private void readFile(String path) {
         try {
             java.io.File file = new java.io.File(path);
             java.util.Scanner input = new java.util.Scanner(file);
@@ -39,23 +39,29 @@ public class File {
         }
     }
 
-    public PVector getLine(){
+    public PVector getLine() {
         try {
             String line = lines.get(0).toLowerCase();
             lines.remove(0);
-            if(line.charAt(0) == 'p'){
-                String[] split = line.split(" ");
-                float x = Float.parseFloat(split[1]);
-                float y = Float.parseFloat(split[2]);
-                float z = Float.parseFloat(split[3]);
-                return new PVector(x, y, z);
-            } else { //todo add more commands
-                Console.log("Invalid command", Console.Type.ERROR);
+            if ((line.length() > 0)) {
+                if (line.charAt(0) == 'p') {
+                    String[] split = line.split(" ");
+                    float x = Float.parseFloat(split[1]);
+                    float y = Float.parseFloat(split[2]);
+                    float z = Float.parseFloat(split[3]);
+                    return new PVector(x, y, z);
+                } else {
+                    if ((line.charAt(0) == '#')) { // comment
+                        Console.log(line.substring(1), Console.Type.INFO);
+                    } else {
+                        Console.command(line);
+                    }
+                }
             }
-            getLine();
+            return getLine();
         } catch (NumberFormatException e) {
             Console.log("Invalid command", Console.Type.ERROR);
-        } catch (IndexOutOfBoundsException e){
+        } catch (IndexOutOfBoundsException e) {
             return null;
         }
         return null;

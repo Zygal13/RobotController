@@ -5,12 +5,11 @@ import processing.core.PVector;
 
 public class Controller extends Window {
     File file;
-    private PVector angle;
-    private PVector position;
-    private PVector target;
-    private PVector l_pos;
-    private float speed = 1f;
-    private float lerp = 1.0f;
+    private static PVector angle;
+    private static PVector position;
+    private static PVector target;
+    private static PVector l_pos;
+    private static float lerp = 1.0f;
     private int selected = 0;
     private String[] text = {"100", "100", "100", "100"};
 
@@ -26,7 +25,7 @@ public class Controller extends Window {
             position.y = PApplet.lerp(l_pos.y, target.y, lerp);
             position.z = PApplet.lerp(l_pos.z, target.z, lerp);
             float d = PVector.dist(l_pos, target);
-            lerp = (float) Math.min(1.0, lerp + (Main.MAX_SPEED / d)*speed);
+            lerp = (float) Math.min(1.0, lerp + (Commands.maxSpeed / d)*Commands.speed);
             pos2deg();
             Simulation.addTrace(position);
         }
@@ -98,7 +97,7 @@ public class Controller extends Window {
                     float ts = Float.parseFloat(text[3]);
                     target = new PVector(tx, ty, tz);
                     l_pos = position.copy();
-                    speed = Math.max(0, Math.min(100, ts))/100f;
+                    Commands.speed = Math.max(0, Math.min(100, ts))/100f;
                     lerp = 0;
                 } catch (NumberFormatException e) {
                     Console.log("Invalid input", Console.Type.ERROR);
@@ -210,7 +209,7 @@ public class Controller extends Window {
         //</editor-fold>
     }
 
-    public void deg2pos() {
+    public static void deg2pos() {
         float r = (float) Math.round((150f * Math.cos(Math.toRadians(Main.angle.y)) + 110f * Math.cos(Math.toRadians(Main.angle.y - Main.angle.z))) * 100f) / 100f;
         float x = (float) Math.round(r * Math.cos(Math.toRadians(Main.angle.x)) * 100f) / 100f;
         float y = (float) Math.round(r * Math.sin(Math.toRadians(Main.angle.x)) * 100f) / 100f;
@@ -218,7 +217,7 @@ public class Controller extends Window {
         position = new PVector(x, y, z);
     }
 
-    public void pos2deg() { //todo a3 works, only needs limits
+    public static void pos2deg() {
         float R = (float) Math.sqrt(Math.pow(position.x, 2) + Math.pow(position.y, 2) + Math.pow(position.z - (Main.arm.x), 2));
         if (R > Main.arm.y + Main.arm.z || R < Math.abs(Main.arm.y - Main.arm.z)) {
             Console.log("Position out of range " + R, Console.Type.ERROR);
@@ -232,4 +231,9 @@ public class Controller extends Window {
         angle.z = a3;
     }
 
+    public static void setTarget(PVector target) {
+        Controller.target = target;
+        Controller.l_pos = Controller.position.copy();
+        Controller.lerp = 0;
+    }
 }

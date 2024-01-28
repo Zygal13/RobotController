@@ -9,7 +9,6 @@ public class Main extends PApplet {
     public static PVector angle = new PVector(0, 90, 180);
     public static PVector maxAngle = new PVector(360, 90, 180);
     public static PVector arm = new PVector(65, 150, 110);
-    public static final float MAX_SPEED = 5;
 
     private static PVector mouse = new PVector();
 
@@ -47,7 +46,8 @@ public class Main extends PApplet {
     @Override
     public void keyPressed() {
         for (Window w : windows.values()) {
-            w.keyPressed(key, keyCode);
+            if (w.isOn((int) mouse.x, (int) mouse.y))
+                w.keyPressed(key, keyCode);
         }
     }
 
@@ -73,6 +73,7 @@ public class Main extends PApplet {
         mouse.x = mouseX;
         mouse.y = mouseY;
     }
+
     public void mouseWheel(MouseEvent event) {
         float e = event.getCount();
         for (Window w : windows.values()) {
