@@ -4,16 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b13a615e-c4ca-4f68-9dd1-c795c56f5e91" name="Changes" comment="Program appears to be fully working, just need to bug check">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/serial.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/jssc.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/jssc.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/serial.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Comunication.java" afterDir="false" />
+    <list default="true" id="b13a615e-c4ca-4f68-9dd1-c795c56f5e91" name="Changes" comment="need to update to new model. Added Comunication">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RobotController.iml" beforeDir="false" afterPath="$PROJECT_DIR$/RobotController.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Console.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,12 +23,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "henrySiggelin"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;henrySiggelin&quot;
   }
-}]]></component>
+}</component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
       <filtered-out-file-type name="LOCAL_BRANCH" />
@@ -44,18 +37,18 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Zygal13/RobotController",
-    "accountId": "e567ef52-64b0-4254-8ffa-8fea86e0d6e8"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Zygal13/RobotController&quot;,
+    &quot;accountId&quot;: &quot;e567ef52-64b0-4254-8ffa-8fea86e0d6e8&quot;
   }
-}]]></component>
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2bMRmr0hqWOAOtIE0uJRkAPz5AZ" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -64,26 +57,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.Main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/henry/IdeaProjects/RobotController/lib/jssc.jar",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/henry/IdeaProjects/RobotController/lib/jssc.jar&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\henry\IdeaProjects\RobotController\lib" />
@@ -135,7 +128,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1706023124984</updated>
-      <workItem from="1715069933752" duration="2004000" />
+      <workItem from="1715069933752" duration="2282000" />
+      <workItem from="1715088031939" duration="1549000" />
     </task>
     <task id="LOCAL−00001" summary="sim done and kinematics finished, only inverse left">
       <created>1706136355665</created>
@@ -161,7 +155,14 @@
       <option name="presentableId" value="LOCAL−00004" />
       <updated>1706402879170</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL−00005" summary="need to update to new model. Added Comunication">
+      <option name="closed" value="true" />
+      <created>1715072284605</created>
+      <option name="number" value="LOCAL−00005" />
+      <option name="presentableId" value="LOCAL−00005" />
+      <updated>1715072284605</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -184,6 +185,7 @@
     <MESSAGE value="Inverse kinematics are working. Also added a trace and linear interpolation. Need commands and a working file structure now" />
     <MESSAGE value="File system works, still need commands" />
     <MESSAGE value="Program appears to be fully working, just need to bug check" />
-    <option name="LAST_COMMIT_MESSAGE" value="Program appears to be fully working, just need to bug check" />
+    <MESSAGE value="need to update to new model. Added Comunication" />
+    <option name="LAST_COMMIT_MESSAGE" value="need to update to new model. Added Comunication" />
   </component>
 </project>

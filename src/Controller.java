@@ -15,11 +15,12 @@ public class Controller extends Window {
 
     public Controller(int x, int y, int w, int h) {
         super(x, y, w, h);
-        this.angle = Main.angle;
+        angle = Main.angle;
         position = new PVector(0, 0, 105);
     }
 
     public void update(){
+        PVector lAngle = angle.copy();
         if (lerp != 1.0f) {
             position.x = PApplet.lerp(l_pos.x, target.x, lerp);
             position.y = PApplet.lerp(l_pos.y, target.y, lerp);
@@ -36,6 +37,14 @@ public class Controller extends Window {
                 l_pos = position.copy();
                 lerp = 0.0f;
             }
+        }
+
+        if (lAngle.dot(angle) > 0.99f) {
+            Comunication.send(
+                    "a" + (angle.x/(2*Math.PI)*255) +
+                            "b" + (angle.y/(2*Math.PI)*255) +
+                            "c" + (angle.z/(2*Math.PI)*255) +
+                            "d" + (Main.hAngle/(2*Math.PI)*255));
         }
     }
 
