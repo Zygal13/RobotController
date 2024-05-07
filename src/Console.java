@@ -85,6 +85,8 @@ public class Console extends Window {
                     log("p <x> <y> <z>: sets the target position of the arm", Type.INFO);
                     log("a <x> <y> <z>: sets the target angle of the arm (Sim only)", Type.INFO);
                     log("head <x> <y> <z>: sets the offset of the head", Type.INFO);
+                    log("devices: lists all the available devices", Type.INFO);
+                    log("connect <name>: connects to the device", Type.INFO);
                 }
                 case "clear" -> {
                     lines.clear();
@@ -158,6 +160,16 @@ public class Console extends Window {
                     float z = Float.parseFloat(split[3]);
                     Commands.headOffset = new PVector(x, y, z);
                     Console.log("Head offset set to " + Commands.headOffset, Type.INFO);
+                }
+                case "devices" -> {
+                    String[] ports = Comunication.getPorts();
+                    Console.log(ports.length + " devices found", Type.INFO);
+                    for (String port : ports) {
+                        Console.log(port, Type.INFO);
+                    }
+                }
+                case "connect" -> {
+                    Comunication.connect(split[1]);
                 }
                 default -> Console.log("Unknown command \"" + split[0] + "\"", Type.ERROR);
             }

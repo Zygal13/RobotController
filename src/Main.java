@@ -25,6 +25,7 @@ public class Main extends PApplet {
 
     @Override
     public void setup() {
+        Comunication.create(this);
         ortho();
         windows.put("simulation", new Simulation(25, 25, 800, 400));
         windows.put("controller", new Controller(850, 25, width - (25 + 850), height - 25 * 2));
