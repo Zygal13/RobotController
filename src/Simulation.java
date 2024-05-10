@@ -90,16 +90,16 @@ public class Simulation extends Window {
         g.rotateY(this.angle.y);
         g.translate(0, 22.5f, 0);
         g.shape(base);
-        g.translate(0, Main.arm.x - 25, 0);
+        g.translate(0, Main.BASE_HEIGHT - 25, 0);
         g.rotateY((float) Math.toRadians(Main.angle.x));
         g.shape(shoulder);
         g.translate(0, 2.5f, -11.25f);
         g.rotateZ((float) (Math.toRadians(Main.angle.y) - Math.PI / 2f));
-        g.translate(0, Main.arm.y / 2f, 0);
+        g.translate(0, Main.UPPER_ARM / 2f, 0);
         g.shape(uArm);
-        g.translate(0, Main.arm.y / 2f, 22.5f);
+        g.translate(0, Main.UPPER_ARM / 2f, 22.5f);
         g.rotateZ((float) (Math.PI - Math.toRadians(Main.angle.z)));
-        g.translate(0, -Main.arm.z / 2f, 0);
+        g.translate(0, -Main.LOWER_ARM / 2f, 0);
         g.shape(lArm);
         g.popMatrix();
     }

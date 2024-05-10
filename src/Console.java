@@ -113,7 +113,7 @@ public class Console extends Window {
                     Main.angle.x = x;
                     Main.angle.y = y;
                     Main.angle.z = z;
-                    Controller.deg2pos();
+                    //Controller.deg2pos();
                     log("Angle manually set to " + x + " " + y + " " + z, Type.INFO);
                 }
                 default -> command(input);
@@ -169,7 +169,11 @@ public class Console extends Window {
                     }
                 }
                 case "connect" -> {
-                    Comunication.connect(split[1]);
+                    if(Comunication.connect(split[1])) {
+                        Console.log("Connected to " + split[1], Type.INFO);
+                    } else {
+                        Console.log("Failed to connect to " + split[1], Type.ERROR);
+                    }
                 }
                 default -> Console.log("Unknown command \"" + split[0] + "\"", Type.ERROR);
             }

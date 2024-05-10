@@ -6,10 +6,17 @@ import java.util.HashMap;
 
 public class Main extends PApplet {
     public static HashMap<String, Window> windows = new HashMap<String, Window>();
-    public static PVector angle = new PVector(0, 90, 180);
-    public static float hAngle = 0;
-    public static PVector maxAngle = new PVector(360, 90, 180);
-    public static PVector arm = new PVector(65, 150, 110);
+    public static PVector angle = new PVector(0, 0, 0);
+    public static Float hAngle = 0f;
+    public static float[] maxAngle = {180, 90, 140, 135};
+    public static float[] minAngle = {0, -45, 0, 0};
+    public static int[] maxSignal = {250, 195, 195, 195};
+    public static int[] minSignal = {5, 5, 8, 15};
+
+    public static final float BASE_HEIGHT = 0;
+    public static final float UPPER_ARM = 195.25f;
+    public static final float LOWER_ARM = 130f;
+    public static final float HAND = 35f;
 
     private static PVector mouse = new PVector();
 
@@ -34,9 +41,11 @@ public class Main extends PApplet {
         ((Simulation) windows.get("simulation")).loadShapes(this);
 
         Console.log("Welcome to the robot arm controller!", Console.Type.INFO);
-        Console.log("Verion 0.3.0", Console.Type.INFO);
+        Console.log("Verion 0.5.0", Console.Type.INFO);
         Console.log("Created by: Zygal", Console.Type.INFO);
-        Console.log("Use the sliders to control the arm.", Console.Type.INFO);
+        Console.log("Use the sliders to control the arm or load a .txt file", Console.Type.INFO);
+        Console.log("Origin point is on hand servo, use \"head <x> <y> <z>\" to sett offset", Console.Type.INFO);
+        Console.log("<h> to list commands.", Console.Type.INFO);
         Console.log("No device detected.", Console.Type.WARNING);
     }
 

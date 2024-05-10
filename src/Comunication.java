@@ -1,5 +1,6 @@
 import processing.serial.*;
 
+
 public class Comunication {
     static Serial port;
     static Main main;
@@ -13,6 +14,7 @@ public class Comunication {
             port = new Serial(Comunication.main, portName, 9600);
             return true;
         } catch (Exception e) {
+            Console.log(e.getMessage(), Console.Type.ERROR);
             return false;
         }
     }
@@ -21,7 +23,14 @@ public class Comunication {
         return Serial.list();
     }
 
-    public static void send(String data) {
-        port.write(data);
+
+    public static boolean send(String data) {
+        if (port != null) { //if the arm doesn't respond, try adding a delay here
+            port.write(data + 'x');
+            System.out.println(data);
+            return true;
+        } else {
+            return false;
+        }
     }
 }
