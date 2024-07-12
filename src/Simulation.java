@@ -3,7 +3,7 @@ import processing.core.*;
 import java.util.ArrayList;
 
 public class Simulation extends Window {
-    PVector angle = new PVector();
+    PVector CameraAngle = new PVector();
     PShape base;
     PShape shoulder;
     PShape uArm;
@@ -15,10 +15,13 @@ public class Simulation extends Window {
     }
 
     public void loadShapes(PApplet g) {
-        base = g.loadShape("Models/Base.obj");
         shoulder = g.loadShape("Models/Shoulder.obj");
         uArm = g.loadShape("Models/UpperArm.obj");
         lArm = g.loadShape("Models/LowerArm.obj");
+
+        shoulder.scale(1000f);
+        uArm.scale(1000f);
+        lArm.scale(1000f);
     }
 
     public void draw(PGraphics g) {
@@ -28,22 +31,21 @@ public class Simulation extends Window {
         // arrows
         g.pushMatrix();
         g.translate(this.w - 100, 100, 100);
-        g.rotateX(-this.angle.x);
-        g.rotateY(this.angle.y);
+        g.rotateX(-this.CameraAngle.x);
+        g.rotateY(this.CameraAngle.y);
         g.stroke(255, 0, 0);
-        g.line(0, 0, 0, 50, 0, 0);
+        g.line(0, 0, 0, 50, 0, 0); // x
         g.stroke(0, 0, 255);
-        g.line(0, 0, 0, 0, -50, 0);
+        g.line(0, 0, 0, 0, -50, 0); // z
         g.stroke(0, 255, 0);
-        g.line(0, 0, 0, 0, 0, 50);
+        g.line(0, 0, 0, 0, 0, -50); // y
         g.popMatrix();
 
         if (Commands.showArm) drawArm(g);
         if (Commands.showGrid) drawGrid(g);
         if (Commands.showTrace) drawTrace(g);
-        g.directionalLight(255, 255, 255, 0, 0, -1);
 
-        g.ambient(255);
+        g.noLights();
         g.translate(0, 0, 850);
         g.noStroke();
         g.fill(64);
@@ -58,8 +60,8 @@ public class Simulation extends Window {
     private void drawGrid(PGraphics g) {
         g.pushMatrix();
         g.translate(w / 2f, h * 0.75f, 500);
-        g.rotateX((float) (Math.PI / 2f - this.angle.x));
-        g.rotateZ(-this.angle.y);
+        g.rotateX((float) (Math.PI / 2f - this.CameraAngle.x));
+        g.rotateZ(-this.CameraAngle.y);
         g.noFill();
         g.stroke(100);
         g.strokeWeight(1);
@@ -84,23 +86,24 @@ public class Simulation extends Window {
 
     private void drawArm(PGraphics g) {
         g.pushMatrix();
+        //camera stuff
         g.translate(w / 2f, h * 0.75f, 500);
         g.scale(1, -1, 1);
-        g.rotateX(this.angle.x);
-        g.rotateY(this.angle.y);
-        g.translate(0, 22.5f, 0);
-        g.shape(base);
-        g.translate(0, Main.BASE_HEIGHT - 25, 0);
-        g.rotateY((float) Math.toRadians(Main.angle.x));
+        g.rotateX(this.CameraAngle.x);
+        g.rotateY(this.CameraAngle.y);
+        //base
+        g.rotateY((float) Math.toRadians(Main.angle.x + 90));
+        g.translate(0, Main.BASE_HEIGHT, 0);
         g.shape(shoulder);
-        g.translate(0, 2.5f, -11.25f);
-        g.rotateZ((float) (Math.toRadians(Main.angle.y) - Math.PI / 2f));
-        g.translate(0, Main.UPPER_ARM / 2f, 0);
+        g.translate(0, 40.5f, 0);
+        //upper arm
+        g.rotateX((float) Math.toRadians(Main.angle.y));
         g.shape(uArm);
-        g.translate(0, Main.UPPER_ARM / 2f, 22.5f);
-        g.rotateZ((float) (Math.PI - Math.toRadians(Main.angle.z)));
-        g.translate(0, -Main.LOWER_ARM / 2f, 0);
+        g.translate(0, Main.UPPER_ARM, 0);
+        //lower arm
+        g.rotateX((float) Math.toRadians(180f-Main.angle.z));
         g.shape(lArm);
+        g.translate(0, Main.LOWER_ARM, 0);
         g.popMatrix();
     }
 
@@ -108,8 +111,8 @@ public class Simulation extends Window {
         g.pushMatrix();
         g.translate(w / 2f, h * 0.75f, 500);
         g.scale(1, -1, 1);
-        g.rotateX(this.angle.x);
-        g.rotateY(this.angle.y);
+        g.rotateX(this.CameraAngle.x);
+        g.rotateY(this.CameraAngle.y);
         g.translate(0, 22.5f, 0);
         g.stroke(0, 255, 0);
         for (int i = 0; i < trace.size(); i++) {
@@ -124,9 +127,9 @@ public class Simulation extends Window {
         super.mouseDragged(mx, my);
         float dmx = mx - Main.getMouse().x;
         float dmy = my - Main.getMouse().y;
-        this.angle.x += dmy * 0.01;
-        this.angle.y += dmx * 0.01;
-        this.angle.x = (float) Math.max(-Math.PI / 2f, Math.min(Math.PI / 2f, this.angle.x));
+        this.CameraAngle.x += dmy * 0.01;
+        this.CameraAngle.y += dmx * 0.01;
+        this.CameraAngle.x = (float) Math.max(-Math.PI / 2f, Math.min(Math.PI / 2f, this.CameraAngle.x));
     }
 
     public static void addTrace(PVector v) {

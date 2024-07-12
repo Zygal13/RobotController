@@ -13,7 +13,7 @@ public class Main extends PApplet {
     public static int[] maxSignal = {250, 195, 195, 195};
     public static int[] minSignal = {5, 5, 8, 15};
 
-    public static final float BASE_HEIGHT = 0;
+    public static final float BASE_HEIGHT = 67.5f;
     public static final float UPPER_ARM = 195.25f;
     public static final float LOWER_ARM = 130f;
     public static final float HAND = 35f;

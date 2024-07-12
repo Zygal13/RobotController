@@ -14,24 +14,23 @@ public class Controller extends Window {
     private int selected = 0;
     private String[] text = {"100", "100", "100", "100"};
 
-    private Slider[] sliders = new Slider[6];
+    private static Slider[] sliders = new Slider[6];
 
     public Controller(int x, int y, int w, int h) {
         super(x, y, w, h);
         angle = Main.angle;
         hAngle = Main.hAngle;
-        position = new PVector(0, 0, 105);
-        sliders[0] = new Slider(x + 50, y + 50 + 65, w - 75, Main.minAngle[0], Main.maxAngle[0], 0.5f); //angle 1
-        sliders[1] = new Slider(x + 50, y + 50 + 115, w - 75, Main.minAngle[1], Main.maxAngle[1], 0.333f); //angle 2
-        sliders[2] = new Slider(x + 50, y + 50 + 165, w - 75, Main.minAngle[2], Main.maxAngle[2], 0.5f); //angle 3
+        position = new PVector(0, 0, Main.BASE_HEIGHT + Main.UPPER_ARM - Main.LOWER_ARM);
+        sliders[0] = new Slider(x + 50, y + 50 + 65, w - 75, Main.minAngle[0], Main.maxAngle[0], 0); //angle 1
+        sliders[1] = new Slider(x + 50, y + 50 + 115, w - 75, Main.minAngle[1], Main.maxAngle[1], 0); //angle 2
+        sliders[2] = new Slider(x + 50, y + 50 + 165, w - 75, Main.minAngle[2], Main.maxAngle[2], 0); //angle 3
         //TODO check for real values
-        sliders[3] = new Slider(x + 50, y + 250 + 65, w - 75, 0, 294.812f, 0.5f); //position x
-        sliders[4] = new Slider(x + 50, y + 250 + 115, w - 75, -294.812f, 294.812f, 0.5f); //position y
-        sliders[5] = new Slider(x + 50, y + 250 + 165, w - 75, 0, 294.812f, 0.5f); //position z
+        sliders[3] = new Slider(x + 50, y + 250 + 65, w - 75, -304, 304, 0); //position x
+        sliders[4] = new Slider(x + 50, y + 250 + 115, w - 75, 0, 304, 0); //position y
+        sliders[5] = new Slider(x + 50, y + 250 + 165, w - 75, 0, 347, Main.BASE_HEIGHT + Main.UPPER_ARM - Main.LOWER_ARM); //position z
     }
 
     public void update() {
-        PVector lAngle = angle.copy();
         if (lerp != 1.0f) {
             position.x = PApplet.lerp(l_pos.x, target.x, lerp);
             position.y = PApplet.lerp(l_pos.y, target.y, lerp);
@@ -39,7 +38,6 @@ public class Controller extends Window {
             float d = PVector.dist(l_pos, target);
             lerp = (float) Math.min(1.0, lerp + (Commands.maxSpeed / d) * Commands.speed);
             pos2deg();
-            Simulation.addTrace(position);
         }
         if (file != null && lerp == 1.0f) {
             target = file.getLine();
@@ -49,18 +47,13 @@ public class Controller extends Window {
                 lerp = 0.0f;
             }
         }
-
-
         //if (lAngle.normalize().dot(angle.copy().normalize()) < 0.9998f) {
-
-        float a3 = Main.angle.z - Main.angle.y;
-        a3 = Math.max(Math.min(a3, Main.maxAngle[3]), Main.minAngle[3]);
 
         Comunication.send(
                 "a" + PApplet.map(angle.x, Main.minAngle[0], Main.maxAngle[0], Main.minSignal[0], Main.maxSignal[0]) +
                         "b" + PApplet.map(angle.y, Main.minAngle[1], Main.maxAngle[1], Main.minSignal[1], Main.maxSignal[1]) +
                         "c" + PApplet.map(angle.z, Main.minAngle[2], Main.maxAngle[2], Main.minSignal[2], Main.maxSignal[2]) +
-                        "d" + PApplet.map(a3, Main.minAngle[3], Main.maxAngle[3], Main.minSignal[3], Main.maxSignal[3]));
+                        "d" + PApplet.map(Main.hAngle, Main.minAngle[3], Main.maxAngle[3], Main.minSignal[3], Main.maxSignal[3]));
 
         // }
     }
@@ -76,7 +69,6 @@ public class Controller extends Window {
             angle.y = sliders[1].getValue();
             angle.z = sliders[2].getValue();
             deg2pos();
-            Simulation.addTrace(position);
             sliders[3].setValue(position.x);
             sliders[4].setValue(position.y);
             sliders[5].setValue(position.z);
@@ -86,7 +78,6 @@ public class Controller extends Window {
             position.y = sliders[4].getValue();
             position.z = sliders[5].getValue();
             pos2deg();
-            Simulation.addTrace(position);
             sliders[0].setValue(angle.x);
             sliders[1].setValue(angle.y);
             sliders[2].setValue(angle.z);
@@ -203,32 +194,38 @@ public class Controller extends Window {
         //</editor-fold>
     }
 
-    public void deg2pos() {
-        float Rxy = (float) (Main.UPPER_ARM * Math.sin(Math.toRadians(angle.y)) + Main.LOWER_ARM * Math.sin(Math.toRadians(angle.z - angle.y)));
-        float x = (float) (Rxy * Math.sin(Math.toRadians(angle.x)) + Commands.headOffset.x * Math.sin(Math.toRadians(angle.x)) + Commands.headOffset.y * Math.cos(Math.toRadians(angle.x)));
-        float y = (float) (Rxy * Math.cos(Math.toRadians(angle.x)) + Commands.headOffset.y * Math.cos(Math.toRadians(angle.x)) + Commands.headOffset.x * Math.sin(Math.toRadians(angle.x)));
-        float z = (float) (Main.UPPER_ARM * Math.cos(Math.toRadians(angle.y)) + Main.LOWER_ARM * Math.cos(Math.toRadians(angle.z - angle.y)) + Commands.headOffset.z);
-        position = new PVector(x, y, z);
+    public static void deg2pos() {
+        float r = (float) Math.round((Main.UPPER_ARM * Math.cos(Math.toRadians((90 - Main.angle.y))) + Main.LOWER_ARM * Math.cos(Math.toRadians((90 - Main.angle.y) - (180 - Main.angle.z)))) * 100f) / 100f;
+        float x = (float) Math.round(r * Math.cos(Math.toRadians(Main.angle.x)) * 100f) / 100f;
+        float y = (float) Math.round(r * Math.sin(Math.toRadians(Main.angle.x)) * 100f) / 100f;
+        float z = (float) Math.round((Main.BASE_HEIGHT + Main.UPPER_ARM * Math.sin(Math.toRadians(90 - Main.angle.y)) - Main.LOWER_ARM * Math.sin(Math.toRadians((180 - Main.angle.z) - (90 - Main.angle.y)))) * 100f) / 100f;
+        position = new PVector(x, y, z).add(Commands.headOffset.copy());
+        Simulation.addTrace(position);
     }
 
-    public void pos2deg() {
-        float Rxy = (float) Math.sqrt(Math.pow(position.x, 2) + Math.pow(position.y, 2) - Math.pow(Commands.headOffset.y, 2)) - Commands.headOffset.x;
-        float R = (float) Math.sqrt(Math.pow(Rxy, 2) + Math.pow(position.z - Commands.headOffset.z, 2));
+    public boolean pos2deg() {
+        float R = (float) Math.sqrt(Math.pow(position.x, 2) + Math.pow(position.y, 2) + Math.pow(position.z - Main.BASE_HEIGHT, 2));
         if (R > 0.1) {
-            float a0 = (float) Math.toDegrees(Math.acos((Math.pow(Rxy, 2) + Math.pow(position.x, 2) + Math.pow(position.y, 2) - Math.pow(Commands.headOffset.x, 2) - Math.pow(Commands.headOffset.y, 2)) / (2 * Rxy * Math.sqrt(Math.pow(position.x, 2) + Math.pow(position.y, 2)))) + Math.acos(position.x / (Math.sqrt(Math.pow(position.x, 2) + Math.pow(position.y, 2)))));
-            float a1 = 90f - (float) Math.toDegrees(Math.asin((position.z - Commands.headOffset.z) / R) + Math.acos((Math.pow(Main.UPPER_ARM, 2) + Math.pow(R, 2) - Math.pow(Main.LOWER_ARM, 2)) / (2 * Main.UPPER_ARM * R)));
+            float a0 = (float) Math.toDegrees(Math.atan2(position.y, position.x));
             float a2 = (float) Math.toDegrees(Math.acos((Math.pow(Main.UPPER_ARM, 2) + Math.pow(Main.LOWER_ARM, 2) - Math.pow(R, 2)) / (2 * Main.UPPER_ARM * Main.LOWER_ARM)));
+            float a1 = (float) 90 - (float) Math.toDegrees(Math.asin((position.z - Main.BASE_HEIGHT) / R) + Math.asin((Main.LOWER_ARM * Math.sin(Math.toRadians(a2))) / R));
+
             a0 = Math.max(Math.min(a0, Main.maxAngle[0]), Main.minAngle[0]);
             a1 = Math.max(Math.min(a1, Main.maxAngle[1]), Main.minAngle[1]);
             a2 = Math.max(Math.min(a2, Main.maxAngle[2]), Main.minAngle[2]);
             float a3 = 135f - a2 + a1;
             a3 = Math.max(Math.min(a3, Main.maxAngle[3]), Main.minAngle[3]);
-            angle = new PVector(a0, a1, a3);
+            //TODO add limits here
+            angle.x = a0;
+            angle.y = a1;
+            angle.z = a2;
             hAngle = a3;
         } else {
             angle = new PVector(0, 0, 0);
             hAngle = 0f;
         }
+        Simulation.addTrace(position);
+        return true;
     }
 
     public static void setTarget(PVector target) {
@@ -237,9 +234,15 @@ public class Controller extends Window {
         Controller.lerp = 0;
     }
 
+    public static void updateLimits(float[] maxPosition, float[] minPosition) {
+        sliders[3].setLimits(minPosition[0], maxPosition[0]);
+        sliders[4].setLimits(minPosition[1], maxPosition[1]);
+        sliders[5].setLimits(minPosition[2], maxPosition[2]);
+    }
+
     private static class Slider {
-        private final float max;
-        private final float min;
+        private float max;
+        private float min;
         private float value;
         private final float x;
         private final float y;
@@ -261,16 +264,18 @@ public class Controller extends Window {
             this.l = l;
             this.min = min;
             this.max = max;
-            this.value = value;
+            setValue(value);
         }
 
         public void draw(PGraphics g, float offsetX, float offsetY) {
             g.translate(-offsetX, -offsetY);
             g.stroke(255);
             g.line(x, y, x + l * value, y);
-            g.circle(x + l * value, y, 10);
             g.stroke(200);
             g.line(x + l * value, y, x + l, y);
+            g.stroke(255);
+            g.fill(255);
+            g.circle(x + l * value, y, 10);
             g.translate(offsetX, offsetY);
         }
 
@@ -281,8 +286,17 @@ public class Controller extends Window {
             }
         }
 
-        public float getValue() {
+        public void setLimits(float min, float max) {
+            this.min = min;
+            this.max = max;
+        }
+
+        public float getExactValue() {
             return min + (max - min) * value;
+        }
+
+        public float getValue() {
+            return (float) Math.round((min + (max - min) * value) * 100f) / 100f;
         }
 
         public void setValue(float value) {

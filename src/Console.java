@@ -84,7 +84,7 @@ public class Console extends Window {
                     log("speed <speed>: sets the speed of the arm as a percentage", Type.INFO);
                     log("p <x> <y> <z>: sets the target position of the arm", Type.INFO);
                     log("a <x> <y> <z>: sets the target angle of the arm (Sim only)", Type.INFO);
-                    log("head <x> <y> <z>: sets the offset of the head", Type.INFO);
+                    log("head <r> <z>: sets the offset of the head", Type.INFO);
                     log("devices: lists all the available devices", Type.INFO);
                     log("connect <name>: connects to the device", Type.INFO);
                 }
@@ -156,10 +156,10 @@ public class Console extends Window {
                 }
                 case "head" -> {
                     float x = Float.parseFloat(split[1]);
-                    float y = Float.parseFloat(split[2]);
-                    float z = Float.parseFloat(split[3]);
-                    Commands.headOffset = new PVector(x, y, z);
-                    Console.log("Head offset set to " + Commands.headOffset, Type.INFO);
+                    float z = Float.parseFloat(split[2]);
+                    Commands.headOffset = new PVector(x, 0, z);
+                    //Controller.updateLimits(); TODO update slider limits or make slicer do that?
+                    Console.log("Head offset set to " + Commands.headOffset, Type.INFO); //TODO, y doesnt exist
                 }
                 case "devices" -> {
                     String[] ports = Comunication.getPorts();

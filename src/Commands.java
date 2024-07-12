@@ -1,7 +1,7 @@
 import processing.core.PVector;
 
 public class Commands {
-    public static float maxSpeed = 5f;
+    public static float maxSpeed = 2.5f;
     public static float speed = 1.0f;
     public static boolean trace = true;
     public static boolean forceTrace = false;

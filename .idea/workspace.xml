@@ -4,15 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b13a615e-c4ca-4f68-9dd1-c795c56f5e91" name="Changes" comment="Program appears to be fully working, just need to bug check">
-      <change afterPath="$PROJECT_DIR$/src/SerialTest/Main2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/serial.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/jssc.xml" afterDir="false" />
+    <list default="true" id="b13a615e-c4ca-4f68-9dd1-c795c56f5e91" name="Changes" comment="needs update on sim">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RobotController.iml" beforeDir="false" afterPath="$PROJECT_DIR$/RobotController.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/jssc.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/jssc.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/jssc.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lib/jssc.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/serial.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/serial.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Comunication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Comunication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Base.mtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Base.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/LowerArm.mtl" beforeDir="false" afterPath="$PROJECT_DIR$/Models/LowerArm.mtl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/LowerArm.obj" beforeDir="false" afterPath="$PROJECT_DIR$/Models/LowerArm.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Shoulder.mtl" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Shoulder.mtl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Shoulder.obj" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Shoulder.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/UpperArm.mtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/UpperArm.obj" beforeDir="false" afterPath="$PROJECT_DIR$/Models/UpperArm.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Console.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
@@ -53,18 +55,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;A:/Programming/RobotController/lib/serial.jar&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "G:/My Drive/1Stuff/Programming/Java/shaders",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="A:\Programming\RobotController\Models" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.Main">
     <configuration default="true" type="MatlabApplication">
       <option name="FILE_PATH" value="" />
@@ -135,7 +143,14 @@
       <option name="presentableId" value="LOCAL−00004" />
       <updated>1706402879170</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL−00005" summary="needs update on sim">
+      <option name="closed" value="true" />
+      <created>1715364200772</created>
+      <option name="number" value="LOCAL−00005" />
+      <option name="presentableId" value="LOCAL−00005" />
+      <updated>1715364200772</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -154,6 +169,7 @@
     <MESSAGE value="Inverse kinematics are working. Also added a trace and linear interpolation. Need commands and a working file structure now" />
     <MESSAGE value="File system works, still need commands" />
     <MESSAGE value="Program appears to be fully working, just need to bug check" />
-    <option name="LAST_COMMIT_MESSAGE" value="Program appears to be fully working, just need to bug check" />
+    <MESSAGE value="needs update on sim" />
+    <option name="LAST_COMMIT_MESSAGE" value="needs update on sim" />
   </component>
 </project>
