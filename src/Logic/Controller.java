@@ -1,3 +1,10 @@
+package Logic;
+
+import Graphics.Simulation;
+import Graphics.Window;
+import InputOutput.Commands;
+import InputOutput.Communication;
+import InputOutput.Console;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PGraphics;
@@ -5,12 +12,12 @@ import processing.core.PVector;
 
 public class Controller extends Window {
     File file;
-    private static PVector angle;
-    private static PVector position;
-    private static PVector target;
-    private static PVector l_pos;
-    private static float lerp = 1.0f;
-    private int selected = 0;
+    private static PVector angle; // Angle shown in the controller window
+    private static PVector position; // Position shown in the controller window
+    private static PVector target; // Target position
+    private static PVector l_pos; // Last position
+    private static float lerp = 1.0f; // Linear interpolation between last and target
+    private int selected = 0; //selected input
     private String[] text = {"100", "100", "100", "100"};
 
     public Controller(int x, int y, int w, int h) {
@@ -19,9 +26,12 @@ public class Controller extends Window {
         position = new PVector(0, 0, 105);
     }
 
+    /**
+     * Update the controller of the arm
+     */
     public void update(){
         PVector lAngle = angle.copy();
-        if (lerp != 1.0f) {
+        if (lerp != 1.0f) { // Linear extrapolation for smooth movement
             position.x = PApplet.lerp(l_pos.x, target.x, lerp);
             position.y = PApplet.lerp(l_pos.y, target.y, lerp);
             position.z = PApplet.lerp(l_pos.z, target.z, lerp);
@@ -30,7 +40,7 @@ public class Controller extends Window {
             pos2deg();
             Simulation.addTrace(position);
         }
-        if (file != null && lerp == 1.0f) {
+        if (file != null && lerp == 1.0f) { // Read next line from file
             target = file.getLine();
             if (target == null) file = null;
             else {
@@ -39,8 +49,8 @@ public class Controller extends Window {
             }
         }
 
-        if (lAngle.dot(angle) > 0.99f) {
-            Comunication.send(
+        if (Communication.isConnected() && lAngle.dot(angle) > 0.99f) { // Send the new angle to the device if it has changed
+            Communication.send(
                     "a" + (angle.x/(2*Math.PI)*255) +
                             "b" + (angle.y/(2*Math.PI)*255) +
                             "c" + (angle.z/(2*Math.PI)*255) +

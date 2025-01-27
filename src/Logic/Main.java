@@ -1,3 +1,9 @@
+package Logic;
+
+import Graphics.Simulation;
+import Graphics.Window;
+import InputOutput.Communication;
+import InputOutput.Console;
 import processing.core.PApplet;
 import processing.core.PVector;
 import processing.event.MouseEvent;
@@ -6,12 +12,12 @@ import java.util.HashMap;
 
 public class Main extends PApplet {
     public static HashMap<String, Window> windows = new HashMap<String, Window>();
-    public static PVector angle = new PVector(0, 90, 180);
-    public static float hAngle = 0;
-    public static PVector maxAngle = new PVector(360, 90, 180);
-    public static PVector arm = new PVector(65, 150, 110);
+    public static PVector angle = new PVector(0, 90, 180); // base, shoulder, upper arm
+    public static float hAngle = 0; // head angle
+    public static PVector maxAngle = new PVector(360, 90, 180); // Maximum allowed angles
+    public static PVector arm = new PVector(65, 150, 110); // arm lengths, Base to shoulder, shoulder to upper arm, upper arm to lower arm
 
-    private static PVector mouse = new PVector();
+    private static final PVector mouse = new PVector(); // mouse position on screen
 
     @Override
     public void draw() {
@@ -25,7 +31,7 @@ public class Main extends PApplet {
 
     @Override
     public void setup() {
-        Comunication.create(this);
+        Communication.create(this);
         ortho();
         windows.put("simulation", new Simulation(25, 25, 800, 400));
         windows.put("controller", new Controller(850, 25, width - (25 + 850), height - 25 * 2));
@@ -86,7 +92,7 @@ public class Main extends PApplet {
     }
 
     public static void main(String[] args) {
-        PApplet.main("Main");
+        PApplet.main("Logic.Main");
     }
 
     public static PVector getMouse() {

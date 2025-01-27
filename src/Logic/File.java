@@ -1,3 +1,7 @@
+package Logic;
+
+import InputOutput.Commands;
+import InputOutput.Console;
 import processing.core.PVector;
 
 import javax.swing.*;
@@ -43,7 +47,7 @@ public class File {
         try {
             String line = lines.get(0).toLowerCase();
             lines.remove(0);
-            if ((line.length() > 0)) {
+            if ((!line.isEmpty())) {
                 if (line.charAt(0) == 'p') {
                     String[] split = line.split(" ");
                     float x = Float.parseFloat(split[1]);
@@ -54,13 +58,13 @@ public class File {
                     if ((line.charAt(0) == '#')) { // comment
                         Console.log(line.substring(1), Console.Type.INFO);
                     } else {
-                        Console.command(line);
+                        Commands.run(line);
                     }
                 }
             }
-            return getLine();
+            return getLine(); // recursive call so commands run until a position is found
         } catch (NumberFormatException e) {
-            Console.log("Invalid command", Console.Type.ERROR);
+            Console.log("Invalid command", Console.Type.ERROR); // incorrect formating of file
         } catch (IndexOutOfBoundsException e) {
             return null;
         }

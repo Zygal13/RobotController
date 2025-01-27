@@ -1,9 +1,10 @@
-import processing.core.PGraphics;
+package Graphics;
 
-import java.security.PublicKey;
+import processing.core.PGraphics;
 
 public class Window {
     protected final int x, y, w, h;
+
 
 
     public Window(int x, int y, int w, int h) {

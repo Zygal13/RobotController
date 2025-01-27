@@ -5,8 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b13a615e-c4ca-4f68-9dd1-c795c56f5e91" name="Changes" comment="need to update to new model. Added Comunication">
+      <change afterPath="$PROJECT_DIR$/hs_err_pid10692.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hs_err_pid12148.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hs_err_pid20928.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hs_err_pid26896.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hs_err_pid9624.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/InputOutput/ComInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/InputOutput/Commands.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/InputOutput/NetworkCommunication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/InputOutput/SerialCommunication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Base.mtl" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Base.mtl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Base.obj" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Base.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/LowerArm.mtl" beforeDir="false" afterPath="$PROJECT_DIR$/Models/LowerArm.mtl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/LowerArm.obj" beforeDir="false" afterPath="$PROJECT_DIR$/Models/LowerArm.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Shoulder.mtl" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Shoulder.mtl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Shoulder.obj" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Shoulder.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/UpperArm.mtl" beforeDir="false" afterPath="$PROJECT_DIR$/Models/UpperArm.mtl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/UpperArm.obj" beforeDir="false" afterPath="$PROJECT_DIR$/Models/UpperArm.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Commands.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Comunication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/InputOutput/Communication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/InputOutput/Console.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/File.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/File.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Simulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/Simulation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/Window.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,26 +81,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/henry/IdeaProjects/RobotController/lib/jssc.jar&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/henry/IdeaProjects/RobotController",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\henry\IdeaProjects\RobotController\lib" />
@@ -93,14 +117,14 @@
       <method v="2" />
     </configuration>
     <configuration name="File" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="File" />
+      <option name="MAIN_CLASS_NAME" value="Logic.File" />
       <module name="RobotController" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="Main" />
+      <option name="MAIN_CLASS_NAME" value="Logic.Main" />
       <module name="RobotController" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -115,8 +139,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
-        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.24807.4" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.24807.4" />
       </set>
     </attachedChunks>
   </component>
@@ -129,7 +153,9 @@
       <option name="presentableId" value="Default" />
       <updated>1706023124984</updated>
       <workItem from="1715069933752" duration="2282000" />
-      <workItem from="1715088031939" duration="1549000" />
+      <workItem from="1715088031939" duration="1594000" />
+      <workItem from="1715867521084" duration="783000" />
+      <workItem from="1737970448167" duration="10956000" />
     </task>
     <task id="LOCAL−00001" summary="sim done and kinematics finished, only inverse left">
       <created>1706136355665</created>
@@ -162,7 +188,14 @@
       <option name="presentableId" value="LOCAL−00005" />
       <updated>1715072284605</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL−00006" summary="need to update to new model. Added Comunication">
+      <option name="closed" value="true" />
+      <created>1715089628179</created>
+      <option name="number" value="LOCAL−00006" />
+      <option name="presentableId" value="LOCAL−00006" />
+      <updated>1715089628179</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -1,3 +1,7 @@
+package Graphics;
+
+import InputOutput.Commands;
+import Logic.Main;
 import processing.core.*;
 
 import java.util.ArrayList;
@@ -8,7 +12,7 @@ public class Simulation extends Window {
     PShape shoulder;
     PShape uArm;
     PShape lArm;
-    static ArrayList<PVector> trace = new ArrayList<PVector>();
+    public static ArrayList<PVector> trace = new ArrayList<PVector>();
 
     public Simulation(int x, int y, int w, int h) {
         super(x, y, w, h);
@@ -43,7 +47,8 @@ public class Simulation extends Window {
         if (Commands.showTrace) drawTrace(g);
         g.directionalLight(255, 255, 255, 0, 0, -1);
 
-        g.ambient(255);
+        // prevent clipping through the windows edges
+        g.noLights();
         g.translate(0, 0, 850);
         g.noStroke();
         g.fill(64);
