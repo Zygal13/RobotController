@@ -4,33 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b13a615e-c4ca-4f68-9dd1-c795c56f5e91" name="Changes" comment="need to update to new model. Added Comunication">
-      <change afterPath="$PROJECT_DIR$/hs_err_pid10692.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hs_err_pid12148.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hs_err_pid20928.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hs_err_pid26896.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hs_err_pid9624.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/InputOutput/ComInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/InputOutput/Commands.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/InputOutput/NetworkCommunication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/InputOutput/SerialCommunication.java" afterDir="false" />
+    <list default="true" id="b13a615e-c4ca-4f68-9dd1-c795c56f5e91" name="Changes" comment="Fixed sim, added Communication through wifi (i think it works) and some mayor structural reforms">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/Base.mtl" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Base.mtl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/Base.obj" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Base.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/LowerArm.mtl" beforeDir="false" afterPath="$PROJECT_DIR$/Models/LowerArm.mtl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/LowerArm.obj" beforeDir="false" afterPath="$PROJECT_DIR$/Models/LowerArm.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/Shoulder.mtl" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Shoulder.mtl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/Shoulder.obj" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Shoulder.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/UpperArm.mtl" beforeDir="false" afterPath="$PROJECT_DIR$/Models/UpperArm.mtl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/UpperArm.obj" beforeDir="false" afterPath="$PROJECT_DIR$/Models/UpperArm.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Commands.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Comunication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/InputOutput/Communication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/InputOutput/Console.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/File.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/File.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Simulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/Simulation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/Window.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Logic/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +65,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/henry/IdeaProjects/RobotController",
+    "last_opened_file_path": "G:/My Drive/1Stuff/Programming/Java/shaders",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -155,7 +131,7 @@
       <workItem from="1715069933752" duration="2282000" />
       <workItem from="1715088031939" duration="1594000" />
       <workItem from="1715867521084" duration="783000" />
-      <workItem from="1737970448167" duration="10956000" />
+      <workItem from="1737970448167" duration="13410000" />
     </task>
     <task id="LOCAL−00001" summary="sim done and kinematics finished, only inverse left">
       <created>1706136355665</created>
@@ -195,7 +171,14 @@
       <option name="presentableId" value="LOCAL−00006" />
       <updated>1715089628179</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL−00007" summary="Fixed sim, added Communication through wifi (i think it works) and some mayor structural reforms">
+      <option name="closed" value="true" />
+      <created>1737989361314</created>
+      <option name="number" value="LOCAL−00007" />
+      <option name="presentableId" value="LOCAL−00007" />
+      <updated>1737989361315</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -219,6 +202,7 @@
     <MESSAGE value="File system works, still need commands" />
     <MESSAGE value="Program appears to be fully working, just need to bug check" />
     <MESSAGE value="need to update to new model. Added Comunication" />
-    <option name="LAST_COMMIT_MESSAGE" value="need to update to new model. Added Comunication" />
+    <MESSAGE value="Fixed sim, added Communication through wifi (i think it works) and some mayor structural reforms" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed sim, added Communication through wifi (i think it works) and some mayor structural reforms" />
   </component>
 </project>

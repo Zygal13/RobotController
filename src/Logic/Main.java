@@ -7,6 +7,7 @@ import InputOutput.Console;
 import processing.core.PApplet;
 import processing.core.PVector;
 import processing.event.MouseEvent;
+import processing.opengl.PJOGL;
 
 import java.util.HashMap;
 
@@ -31,6 +32,7 @@ public class Main extends PApplet {
 
     @Override
     public void setup() {
+        surface.setTitle("Robot Arm Controller");
         Communication.create(this);
         ortho();
         windows.put("simulation", new Simulation(25, 25, 800, 400));
@@ -49,6 +51,7 @@ public class Main extends PApplet {
     @Override
     public void settings() {
         size(1280, 720, P3D);
+        PJOGL.setIcon("src/Graphics/icon.png");
     }
 
     @Override
