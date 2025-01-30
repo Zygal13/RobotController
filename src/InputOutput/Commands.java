@@ -45,6 +45,8 @@ public class Commands {
                     log("devices: lists all the available devices", Console.Type.INFO);
                     log("connect <name>: connects to a port or IP address", Console.Type.INFO);
                     log("close: closes the connection", Console.Type.INFO);
+                    log("test: tests if the connection is open", Console.Type.INFO);
+                    log("send <message>: sends a message to the connected device", Console.Type.INFO);
                 }
                 case "clear" -> {
                     Console.clear();
@@ -73,54 +75,62 @@ public class Commands {
                 }
                 case "maxspeed" -> {
                     Commands.maxSpeed = Float.parseFloat(split[1]);
-                    Console.log("Max speed set to " + Commands.maxSpeed, Console.Type.INFO);
+                    log("Max speed set to " + Commands.maxSpeed, Console.Type.INFO);
                 }
                 case "speed" -> {
                     Commands.speed = Float.parseFloat(split[1]) / 100f;
-                    Console.log("Speed set to " + Commands.speed * 100 + "%", Console.Type.INFO);
+                    log("Speed set to " + Commands.speed * 100 + "%", Console.Type.INFO);
                 }
                 case "trace" -> {
                     Commands.trace = Boolean.parseBoolean(split[1]);
-                    Console.log("Trace set to " + Commands.trace, Console.Type.INFO);
+                    log("Trace set to " + Commands.trace, Console.Type.INFO);
                 }
                 case "forcetrace" -> {
                     Commands.forceTrace = Boolean.parseBoolean(split[1]);
-                    Console.log("Force trace set to " + Commands.forceTrace, Console.Type.INFO);
+                    log("Force trace set to " + Commands.forceTrace, Console.Type.INFO);
                 }
                 case "showtrace" -> {
                     Commands.showTrace = Boolean.parseBoolean(split[1]);
-                    Console.log("Show trace set to " + Commands.showTrace, Console.Type.INFO);
+                    log("Show trace set to " + Commands.showTrace, Console.Type.INFO);
                 }
                 case "showgrid" -> {
                     Commands.showGrid = Boolean.parseBoolean(split[1]);
-                    Console.log("Show grid set to " + Commands.showGrid, Console.Type.INFO);
+                    log("Show grid set to " + Commands.showGrid, Console.Type.INFO);
                 }
                 case "showarm" -> {
                     Commands.showArm = Boolean.parseBoolean(split[1]);
-                    Console.log("Show arm set to " + Commands.showArm, Console.Type.INFO);
+                    log("Show arm set to " + Commands.showArm, Console.Type.INFO);
                 }
                 case "head" -> {
                     float x = Float.parseFloat(split[1]);
                     float y = Float.parseFloat(split[2]);
                     float z = Float.parseFloat(split[3]);
                     Commands.headOffset = new PVector(x, y, z);
-                    Console.log("Head offset set to " + Commands.headOffset, Console.Type.INFO);
+                    log("Head offset set to " + Commands.headOffset, Console.Type.INFO);
                 }
                 case "devices" -> {
                     String[] ports = Communication.getPorts();
-                    Console.log(ports.length + " devices found", Console.Type.INFO);
+                    log(ports.length + " devices found", Console.Type.INFO);
                     for (String port : ports) {
-                        Console.log(port, Console.Type.INFO);
+                        log(port, Console.Type.INFO);
                     }
                 }
                 case "connect" -> {
                     if (!Communication.connect(split[1])) {
-                        Console.log("Failed to connect", Console.Type.ERROR);
+                        log("Failed to connect", Console.Type.ERROR);
+                    } else {
+                        log("Connected", Console.Type.INFO);
                     }
                 }
                 case "close" -> {
                     Communication.close();
-                    Console.log("Connection closed", Console.Type.INFO);
+                    log("Connection closed", Console.Type.INFO);
+                }
+                case "test" -> { // Test if the connection is open
+                    log("connected: " + Communication.isConnected(), Console.Type.INFO);
+                }
+                case "send" -> { // Send a message to the connected device
+                    Communication.send(input.substring(5));
                 }
                 default -> Console.log("Unknown command \"" + split[0] + "\"", Console.Type.ERROR);
             }

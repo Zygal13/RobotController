@@ -24,21 +24,24 @@ public class Controller extends Window {
         super(x, y, w, h);
         angle = Main.angle;
         position = new PVector(0, 0, 105);
+        l_pos = position.copy();
     }
 
     /**
      * Update the controller of the arm
      */
-    public void update(){
+    public void update() {
         PVector lAngle = angle.copy();
         if (lerp != 1.0f) { // Linear extrapolation for smooth movement
             position.x = PApplet.lerp(l_pos.x, target.x, lerp);
             position.y = PApplet.lerp(l_pos.y, target.y, lerp);
             position.z = PApplet.lerp(l_pos.z, target.z, lerp);
             float d = PVector.dist(l_pos, target);
-            lerp = (float) Math.min(1.0, lerp + (Commands.maxSpeed / d)*Commands.speed);
+            lerp = (float) Math.min(1.0, lerp + (Commands.maxSpeed / d) * Commands.speed);
             pos2deg();
             Simulation.addTrace(position);
+        } else {
+            l_pos = position.copy();
         }
         if (file != null && lerp == 1.0f) { // Read next line from file
             target = file.getLine();
@@ -49,12 +52,12 @@ public class Controller extends Window {
             }
         }
 
-        if (Communication.isConnected() && lAngle.dot(angle) > 0.99f) { // Send the new angle to the device if it has changed
+        if (l_pos.dist(position) > 0.01f && Communication.isConnected()) { // Send the new angle to the device if it has changed
             Communication.send(
-                    "a" + (angle.x/(2*Math.PI)*255) +
-                            "b" + (angle.y/(2*Math.PI)*255) +
-                            "c" + (angle.z/(2*Math.PI)*255) +
-                            "d" + (Main.hAngle/(2*Math.PI)*255));
+                    "a" + Math.round(angle.x / (360) * 255) +
+                            "b" + Math.round(angle.y / (360) * 255) +
+                            "c" + Math.round(angle.z / (360) * 255) +
+                            "d" + Math.round(Main.hAngle / (360) * 255));
         }
     }
 
@@ -107,7 +110,7 @@ public class Controller extends Window {
             } else if (my > y + 450 + 50 && my < y + 450 + 75 && mx > x + (w - 125) / 3f * 3 + 25 && mx < x + (w - 125) / 3f * 4 - 25 + 25) {
                 selected = 3;
                 text[3] = "";
-            } else if (my > y + 450 + 100 && my < y + 450 + 125 && mx > x + 25 && mx < x + (w - 125) / 3f){ //lerp button
+            } else if (my > y + 450 + 100 && my < y + 450 + 125 && mx > x + 25 && mx < x + (w - 125) / 3f) { //lerp button
                 try {
                     float tx = Float.parseFloat(text[0]);
                     float ty = Float.parseFloat(text[1]);
@@ -115,12 +118,12 @@ public class Controller extends Window {
                     float ts = Float.parseFloat(text[3]);
                     target = new PVector(tx, ty, tz);
                     l_pos = position.copy();
-                    Commands.speed = Math.max(0, Math.min(100, ts))/100f;
+                    Commands.speed = Math.max(0, Math.min(100, ts)) / 100f;
                     lerp = 0;
                 } catch (NumberFormatException e) {
                     Console.log("Invalid input", Console.Type.ERROR);
                 }
-            } else if (my > y + 450 + 100 && my < y + 450 + 125 && mx > x + (w - 125) / 3f - 25 && mx < x + 2 * (w - 125) / 3f){
+            } else if (my > y + 450 + 100 && my < y + 450 + 125 && mx > x + (w - 125) / 3f - 25 && mx < x + 2 * (w - 125) / 3f) {
                 file = new File();
             }
         }
